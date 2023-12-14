@@ -4,6 +4,7 @@ import Recommended from "./Recommended/Recommended";
 import Sidebar from "./Sidebar/Sidebar";
 import Card from "./components/Card";
 import "./index.css";
+import axios from "axios";
 
 import { useState } from "react";
 
@@ -52,12 +53,16 @@ function App() {
       );
     }
 
+    async function getBook() {
+      try {
+        const response = await axios.get("/user?ID=12345");
+        console.log(response);
+      } catch (error) {
+        console.error(error);
+      }
+    }
     return filteredBooks.map(({ img, title, price }) => (
-      <Card 
-      key={Math.random()} 
-      img={img} 
-      title={title} 
-      price={price} />
+      <Card key={Math.random()} img={img} title={title} price={price} />
     ));
   }
 

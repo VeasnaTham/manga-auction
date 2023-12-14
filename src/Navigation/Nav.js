@@ -2,16 +2,18 @@ import {FiHeart} from 'react-icons/fi'
 import {AiOutlineShoppingCart, AiOutlineUserAdd} from "react-icons/ai"
 import './Nav.css';
 
-function Nav(){
+const Nav = ({ handleInputChange, query }) => {
     return (
         <nav>
             <div className="nav-container">
-                <input 
-                    type="text" 
-                    className='search-input'
-                    placeholder='Enter Manga/Manhwa/Manhua Title'
-                />
-            </div>
+        <input
+          className="search-input"
+          type="text"
+          onChange={handleInputChange}
+          value={query}
+          placeholder="Enter Manga/Manhwa/Manhua Title"
+        />
+      </div>
         <div className="profile-container">
             <a href='#'>
                 <FiHeart className='nav-icons'/>

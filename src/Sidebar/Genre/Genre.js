@@ -12,61 +12,61 @@ function Genre({ handleChange }) {
         </label>
         <Input
           handleChange={handleChange}
-          value="action"
+          value="Action"
           title="Action"
           name="test"
         />
         <Input
           handleChange={handleChange}
-          value="adventure"
+          value="Adventure"
           title="Adventure"
           name="test"
         />
         <Input
           handleChange={handleChange}
-          value="fantasy"
+          value="Fantasy"
           title="Fantasy"
           name="test"
         />
         <Input
           handleChange={handleChange}
-          value="horror"
+          value="Horror"
           title="Horror"
           name="test"
         />
         <Input
           handleChange={handleChange}
-          value="isekai"
+          value="Isekai"
           title="Isekai"
           name="test"
         />
         <Input
           handleChange={handleChange}
-          value="medical"
+          value="Medical"
           title="Medical"
           name="test"
         />
         <Input
           handleChange={handleChange}
-          value="romance"
+          value="Romance"
           title="Romance"
           name="test"
         />
         <Input
           handleChange={handleChange}
-          value="sci-fi"
+          value="Sci-Fi"
           title="Sci-Fi"
           name="test"
         />
         <Input
           handleChange={handleChange}
-          value="supernatural"
+          value="Supernatural"
           title="Supernatural"
           name="test"
         />
         <Input
           handleChange={handleChange}
-          value="webtoons"
+          value="Webtoons"
           title="Webtoons"
           name="test"
         />

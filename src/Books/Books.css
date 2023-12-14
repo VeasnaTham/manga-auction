@@ -11,6 +11,7 @@
     border: 2px solid #ededed;
     padding: 20px;
     cursor: pointer;
+    max-width: 250px;
   }
   
   .card-img {
@@ -20,15 +21,12 @@
   
   .card-title {
     margin-bottom: 1rem;
+    white-space: normal;
   }
   
   .card-price {
     display: flex;
     justify-content: space-between;
     align-items: center;
-  }
-  
-  .bag-icon {
-    color: #535353;
   }
   
