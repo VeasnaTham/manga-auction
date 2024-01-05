@@ -1,0 +1,10 @@
+pydantic
+requests
+uvicorn
+pymongo
+gunicorn
+fastapi
+sqlalchemy
+python-jose
+passlib
+PyJWT
