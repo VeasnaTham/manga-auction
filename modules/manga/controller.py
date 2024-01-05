@@ -11,12 +11,23 @@ router = APIRouter(
 )
 
 #Create
-@router.post("/mangas/", response_model=Item)
-async def create_item(item: Item, db: MongoClient = Depends(get_db)):
+@router.post("/mangas/")
+async def create_manga(item: Item):
     item_dict = item.dict()
-    result = db.insert_one(item_dict)
-    book_id = result.inserted_id
-    return {**item_dict, "id": str(book_id)}
+    
+    # Insert the item into the MongoDB collection
+    try:
+        result = manga_collection.insert_one(item_dict)
+        return {
+            "code": 200,
+            "message": "success"
+        }
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
+
+
+    # Return the created item with the assigned ID
+
 
 #Read
 @router.get("/mangas/{book_id}")
@@ -33,25 +44,25 @@ async def read_item(book_id: str,):
         raise HTTPException(status_code=500, detail="Internal Server Error")
 
 #Update
-@router.put("/mangas/{book_id}", response_model=Item)
-async def update_item(book_id: str, item: Item, db: MongoClient = Depends(get_db)):
-    result = db.update_one({"_id": ObjectId(book_id)}, {"$set": item.dict()})
+@router.put("/mangas/{book_id}")
+async def update_item(book_id: str, item: Item):
+    result = manga_collection.update_one({"_id": ObjectId(book_id)}, {"$set": item.dict()})
     if result.modified_count == 1:
         return {**item.dict(), "id": book_id}
     raise HTTPException(status_code=404, detail=f"Item with ID {book_id} not found")
 
 #Delete
-@router.delete("/mangas/{book_id}", response_model=dict)
-async def delete_item(book_id: str, db: MongoClient = Depends(get_db)):
-    result = db.delete_one({"_id": ObjectId(book_id)})
+@router.delete("/mangas/{book_id}")
+async def delete_item(book_id: str):
+    result = manga_collection.delete_one({"_id": ObjectId(book_id)})
     if result.deleted_count == 1:
         return {"message": "Item deleted successfully"}
     raise HTTPException(status_code=404, detail=f"Item with ID {book_id} not found")
 
 #Get all
 @router.get('/')
-async def get(db: MongoClient = Depends(get_db)):
-    data = list(db.find())
+async def get():
+    data = list(manga_collection.find())
     for item in data:
         if isinstance(item.get('_id'), ObjectId):
             item['id'] = str(item.pop('_id'))

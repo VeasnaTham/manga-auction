@@ -1,5 +1,6 @@
 from fastapi import FastAPI
 import uvicorn
+from pymongo import MongoClient
 from modules.manga.controller import router as manga_router
 from modules.user.controller import router as user_router
 from fastapi.middleware.cors import CORSMiddleware
